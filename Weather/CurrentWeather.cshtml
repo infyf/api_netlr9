@@ -1,0 +1,27 @@
+﻿@model lr9api.Models.WeatherInfo
+
+<h1>Погода в @Model?.Name</h1>
+
+<form asp-action="CurrentWeather" method="get">
+    <label for="customRegion">Або виберіть інше:</label>
+    <input type="text" name="customRegion" id="customRegion" required />
+
+    <button type="submit">Отримати погоду</button>
+</form>
+
+@if (Model != null && Model.Main != null)
+{
+    <p>Температура: @Model.Main.Temp &deg;C</p>
+    <p>Температура, яку відчуває: @Model.Main.Feels_like &deg;C</p>
+    <p>Вологість: @Model.Main.Humidity%</p>
+    <p>Тиск: @Model.Main.Pressure гПа</p>
+    <p>Швидкість вітру: @Model.Wind.Speed м/с</p>
+    <p>Напрямок вітру: @Model.Wind.Deg &deg;</p>
+    <p>Опис: @Model.Weather[0].Description</p>
+    <p>Видимість: @Model.Visibility м</p>
+
+}
+else
+{
+    <p>Інформація про погоду недоступна.</p>
+}
